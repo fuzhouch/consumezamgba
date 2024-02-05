@@ -7,12 +7,6 @@ const gba = @import("zamgba");
 // ``src/build/arm.zig`` for details.
 pub fn build(b: *std.Build) void {
     const optimize = b.standardOptimizeOption(.{});
-
-    const zamgba = b.dependency("zamgba", .{});
-    var it = zamgba.builder.modules.iterator();
-    while (it.next()) |entry| {
-        std.debug.print("{s}", .{entry.key_ptr});
-    }
     const rom = gba.arm.addROM(b, .{
         .optimize = optimize,
         .name = "first",
