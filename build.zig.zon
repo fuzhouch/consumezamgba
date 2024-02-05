@@ -1,0 +1,14 @@
+.{
+    .name = "consumezamgba",
+    .version = "0.0.0",
+    .minimum_zig_version = "0.12.0",
+
+    .dependencies = .{
+        .zamgba = . {
+            .path = "./deps/zamgba",
+        },
+    },
+    .paths = .{
+        "",
+    },
+}

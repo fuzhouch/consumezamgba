@@ -1,0 +1,3 @@
+[submodule "deps/zamgba"]
+	path = deps/zamgba
+	url = https://github.com/fuzhouch/zamgba.git
