@@ -10,14 +10,14 @@ pub fn build(b: *std.Build) void {
     const rom = gba.arm.addROM(b, .{
         .optimize = optimize,
         .name = "first",
-        .root_source_file = "src/main.zig",
+        .root_source_file = b.path("src/main.zig"),
     });
 
     // zamgba exposes itself as a module that contains its
     // functionality. Client project may rename the import name
     // in addImport() call, if there's any naming conflict.
     const zamgba_module = b.dependency("zamgba", .{}).module("zamgba");
-    rom.root_module.addImport("gba", zamgba_module);
+    rom.root_module.addImport("zamgba", zamgba_module);
 
     b.installArtifact(rom);
 }
