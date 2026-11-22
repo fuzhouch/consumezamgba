@@ -6,7 +6,7 @@
 
     .dependencies = .{
         .zamgba = .{
-            .url = "git+https://github.com/tsetseggames/zamgba.git#515cd569b7db4058d809b715f078fff77787e645",
+            .url = "git+https://github.com/tsetseggames/zamgba.git#v0.3.1",
             .hash = "zamgba-0.3.1-2_DtlCYBIQB2-P-x6q_bqUGjI-7j56njIKQQSObkNjDm",
         },
     },
