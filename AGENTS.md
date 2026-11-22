@@ -4,26 +4,19 @@ This document provides essential context for AI agents working in the `consumeza
 
 ## Project Overview
 
-`consumezamgba` is a template/example consumer project demonstrating how to use the [zamgba](https://github.com/fuzhouch/zamgba) library SDK as a dependency to build custom Game Boy Advance (GBA) ROMs in **Zig** (targeting Zig version **0.16.0** or later).
+`consumezamgba` is a template/example consumer project demonstrating how to use the [zamgba](https://github.com/fuzhouch/zamgba) library SDK as a dependency to build custom Game Boy Advance (GBA) ROMs in **Zig** (targeting Zig version **0.17.0** or later).
 
 ---
 
 ## Code Organization & Structure
 
 - **`build.zig`**: Build script defining the GBA ROM target using `zamgba`'s build helper `gba.arm.addROM(...)` and configuring module imports (`zamgba` imported as `"gba"`).
-- **`build.zig.zon`**: Package manifest specifying package metadata, minimum Zig version (`0.16.0`), and path dependency to `./deps/zamgba`.
+- **`build.zig.zon`**: Package manifest specifying package metadata, minimum Zig version (`0.17.0`), and remote git package dependency (`zamgba`).
 - **`src/main.zig`**: ROM entry point demonstrating GBA initialization, header export, and hardware manipulation (Mode 3 bitmap rendering).
-- **`deps/zamgba/`**: Git submodule containing the Zamgba SDK (`zamgba-hal`, `zamgba-engine`, `src/build/arm.zig`, and `gba.ld`).
 
 ---
 
 ## Essential Commands
-
-### Submodule Initialization
-Ensure the SDK dependency is cloned before building:
-```bash
-git submodule update --init --recursive
-```
 
 ### Build
 ```bash
@@ -94,4 +87,4 @@ When importing `"gba"`, the SDK exposes two primary submodules:
 - **Target Architecture**: GBA builds target `thumb-freestanding` with CPU `arm7tdmi` and `+thumb_mode`. Standard POSIX/OS APIs and host standard library I/O (like `std.debug.print` or file operations) are unavailable in ROM code.
 - **Linker Script (`gba.ld`)**: Zamgba relies on a custom linker script to map `.gba.header`, `.gba.start`, `.gba.boot`, `.data`, and `.bss` into IWRAM/EWRAM/PAKROM.
 - **Running ELF vs GBA**: The ELF output (`zig-out/bin/first`) contains debug symbols for GDB, but emulators and flash cartridges expect the raw binary (`zig-out/bin/first.gba`).
-- **Zig 0.16.0+ Syntax**: Zig 0.16.0 uses lowercase calling conventions (e.g. `callconv(.naked)` instead of older `.Naked`) and `std.Build.LazyPath` / `b.path(...)` in `build.zig`.
+- **Zig 0.17.0+ Syntax**: Zig 0.17.0 uses lowercase calling conventions (e.g. `callconv(.naked)` instead of older `.Naked`) and `std.Build.LazyPath` / `b.path(...)` in `build.zig`.

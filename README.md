@@ -6,8 +6,7 @@ my own ROM.
 
 ## How to build
 
-```
-# Make sure you install zig 0.16.0.
-git submodule update --init --recursive
+```bash
+# Make sure you install zig 0.17.0.
 zig build
 ```
